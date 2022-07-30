@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import {
   NavBar, Cell, CellGroup, Form, Field, Button, CountDown, Tabbar, TabbarItem,
-  Icon, Tab, Tabs, Image as VanImage, List, PullRefresh, ActionSheet
+  Icon, Tab, Tabs, Image as VanImage, List, PullRefresh, ActionSheet, Popup,
+  Col, Row
 } from 'vant'
 Vue.use(NavBar)
 Vue.use(Cell)
@@ -19,3 +20,6 @@ Vue.use(VanImage)
 Vue.use(List)
 Vue.use(PullRefresh)
 Vue.use(ActionSheet)
+Vue.use(Popup)
+Vue.use(Col)
+Vue.use(Row)

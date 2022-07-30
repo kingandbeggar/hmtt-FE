@@ -12,10 +12,16 @@ export const getartlist = (channel_id, timestamp) => request({
     timestamp
   }
 })
-// 所有频道
-
-// 设置频道
-
+// 所有频道列表
+export const getallchanels = () => request({
+  url: '/v1_0/channels'
+})
+// 设置-频道列表
+export const setchannels = (data) => request({
+  url: '/v1_0/user/channels',
+  method: 'put',
+  data
+})
 // 文章不喜欢
 
 // 文章举报
