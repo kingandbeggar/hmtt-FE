@@ -86,8 +86,12 @@ export default {
       })
       try {
         const res = await this.$API.login.gologin(values)
+        settoken(res.data.data.refresh_token, 'refresh_token')
         settoken(res.data.data.token)
+        console.log(res)
         Toast({ message: '登陆成功', type: 'success' })
+        console.log(this.$route)
+        this.$router.replace(this.$route.query.path ? this.$route.query.path : '/')
       } catch (error) {
         Toast.fail(error.response.data.message)
       }

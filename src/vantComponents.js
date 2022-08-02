@@ -2,7 +2,8 @@ import Vue from 'vue'
 import {
   NavBar, Cell, CellGroup, Form, Field, Button, CountDown, Tabbar, TabbarItem,
   Icon, Tab, Tabs, Image as VanImage, List, PullRefresh, ActionSheet, Popup,
-  Col, Row
+  Col, Row, Search, Divider, Loading, Lazyload, Badge, Tag, Uploader, Dialog,
+  DatetimePicker
 } from 'vant'
 Vue.use(NavBar)
 Vue.use(Cell)
@@ -23,3 +24,14 @@ Vue.use(ActionSheet)
 Vue.use(Popup)
 Vue.use(Col)
 Vue.use(Row)
+Vue.use(Search)
+Vue.use(Divider)
+Vue.use(Loading)
+Vue.use(Lazyload, {
+  lazyComponent: true
+})
+Vue.use(Badge)
+Vue.use(Tag)
+Vue.use(Uploader)
+Vue.use(Dialog)
+Vue.use(DatetimePicker)

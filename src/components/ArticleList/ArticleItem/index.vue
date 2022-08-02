@@ -7,32 +7,63 @@
           <!-- 一张图 -->
           <div class="titleandimg">
             <span class="custom-title">{{ list.title }}</span>
+            <!-- <lazy-component>
+              <img
+                v-if="list.cover.type === 1"
+                class="rightimg"
+                v-lazy="list.cover.images[0]"
+              />
+            </lazy-component> -->
             <van-image
               v-if="list.cover.type === 1"
               class="rightimg"
               fit="cover"
               :src="list.cover.images[0]"
-            />
+
+            >
+              <template v-slot:loading>
+                <van-loading type="spinner" size="20" />
+              </template>
+            </van-image>
           </div>
           <!-- 三张图 -->
           <div class="bottomimg" v-if="list.cover.type === 3">
+            <!-- <lazy-component>
+              <img
+                v-for="(li, index) in list.cover.images"
+                :key="index"
+                class="rightimg"
+                v-lazy="li"
+              />
+            </lazy-component> -->
             <van-image
               v-for="(li, index) in list.cover.images"
               :key="index"
               class="rightimg"
               fit="cover"
               :src="li"
-            />
+
+            >
+              <template v-slot:loading>
+                <van-loading type="spinner" size="20" />
+              </template>
+            </van-image>
           </div>
         </template>
         <template #label>
           <div class="txt">
             <span>{{ list.aut_name }}</span>
-            <span>{{ list.comm_count }} 评论</span>
+            <span @click.stop="$emit('gocomment', 1)"
+              >{{ list.comm_count }} 评论</span
+            >
             <span>{{ gettimeago(list.pubdate) }}</span>
           </div>
           <!-- x按钮 -->
-          <van-icon name="cross" @click="showaction"/>
+          <van-icon
+            name="cross"
+            @click.stop="showaction"
+            v-show="$route.fullPath === '/layout/home'"
+          />
           <van-action-sheet
             v-model="show"
             :actions="actions"
@@ -81,13 +112,30 @@ export default {
       this.actions = firstActions
       this.canceltext = '取消'
     },
-    select (action) {
+    async select (action, index) {
       if (action.name === '反馈垃圾内容') {
         this.actions = secondActions
         this.canceltext = '返回'
+      } else if (action.name === '不感兴趣') {
+        try {
+          const res = await this.$API.article.artdislike(this.list.art_id)
+          if (res.status === 201) {
+            Toast.success('反馈成功')
+            this.show = false
+          }
+        } catch (error) {
+          console.log(error.message)
+        }
       } else {
-        Toast.success('反馈成功')
-        this.show = false
+        try {
+          const res = await this.$API.article.artreport(this.list.art_id, index)
+          if (res.status === 201) {
+            Toast.success('反馈成功')
+            this.show = false
+          }
+        } catch (error) {
+          console.log(error.message)
+        }
       }
     }
   }

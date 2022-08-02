@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <van-list
         v-model="loading"
@@ -11,7 +11,7 @@
         offset="50"
 
       >
-        <ArticleItem v-for="a in allchannellist" :key="a.art_id" :list="a" />
+        <ArticleItem v-for="a,index in allchannellist" :key="index" :list="a" @click.native="$router.push(`/articledetail/${a.art_id}`)" @gocomment="$router.push(`/articledetail/${a.art_id}?c=1`)"/>
       </van-list>
     </van-pull-refresh>
   </div>

@@ -23,7 +23,7 @@
         </div>
         <div class="bottom">
           <van-row type="flex" justify="left">
-            <van-col span="5" class="col" v-for="c,index in channels" :key="c.id" @click="changechannel(c,index)"
+            <van-col span="5" class="col" v-for="c,index in channels" :key="c.id" @click="changechannel(c,index,1)"
               >{{ c.name }}
               <van-icon name="cross" class="crossicon" color="#111" size="3" v-show="showx&& c.name!=='推荐'"/>
             </van-col>
@@ -79,10 +79,10 @@ export default {
     changeshowx () {
       this.showx = !this.showx
     },
-    changechannel (li, index) {
+    changechannel (li, index, no) {
       if (this.showx) {
         this.$emit('changechannel', li)
-      } else {
+      } else if (no === 1) {
         this.$emit('changec', index)
         this.$emit('input', false)
       }

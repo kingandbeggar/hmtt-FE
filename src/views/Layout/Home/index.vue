@@ -6,12 +6,12 @@
         <img src="@/assets/1.png" class="logo" />
       </template>
       <template #right>
-        <van-icon name="search" size="18" color="#fff" />
+        <van-icon name="search" size="18" color="#fff" @click="$router.push('/search')"/>
       </template>
     </van-nav-bar>
     <!-- 滚动栏 -->
     <div class="tabss">
-      <van-tabs v-model="active" @change="tabschaneg" animated swipeable :sticky="true" offset-top="1.22667rem">
+      <van-tabs v-model="active" :before-change="tabschaneg" @change="tabschange2" animated swipeable :sticky="true" offset-top="1.22667rem">
         <van-tab :title="c.name" v-for="c in channels" :key="c.id">
           <!-- ArticleList -->
           <ArticleList :active="active"/>
@@ -37,7 +37,9 @@ export default {
       active: 0,
       channels: [],
       show: false,
-      new: []
+      new: [],
+      scroll: null,
+      scrolllist: {}
     }
   },
   created () {
@@ -55,8 +57,16 @@ export default {
         this.$toast('获取用户信息失败')
       }
     },
-    tabschaneg (name, title) {
-      console.log(name, title)
+    tabschaneg () {
+      this.scrolllist[this.active] = window.scrollY
+      console.log(this.scrolllist)
+
+      return true
+    },
+    tabschange2 () {
+      this.$nextTick(() => {
+        window.scrollTo(0, this.scrolllist[this.active])
+      })
     },
     plusclick () {
       this.show = true
@@ -82,6 +92,7 @@ export default {
       try {
         const res = await this.$API.home.setchannels({ channels: this.new })
         console.log(res)
+        if (res.status !== 201) return
         if (index === -1) {
           this.channels.push(li)
           Toast('添加成功')
@@ -94,14 +105,24 @@ export default {
       }
     }
 
+  },
+  beforeRouteLeave (to, from, next) {
+    if (from.meta.records) {
+      from.meta.top = document.documentElement.scrollTop
+    }
+    // this.scroll = document.documentElement.scrollTop
+    next()
   }
+
 }
 </script>
 
 <style lang="less" scoped>
 .logo {
-  width: 30px;
-  height: 30px;
+  position: relative;
+  left: -12px;
+  width: 71px;
+  height: 49px;
 }
 /deep/.van-tab__pane {
   padding: 0 16px;
