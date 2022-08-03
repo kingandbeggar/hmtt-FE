@@ -5,7 +5,14 @@
       round
       src="https://pic4.zhimg.com/80/v2-e6f3d4c41fd200971a7ee0aa4d772c44_720w.jpg?source=1940ef5c"
     />
-    <span>几把猫提醒你此页面正在开发🚧</span>
+    <span></span>
+  <van-notice-bar
+  left-icon="volume-o"
+  text="此页面正在开发中。。。🚧"
+  background="#8f8fbd"
+  color="white"
+/>
+
   </div>
     </div>
 </template>
@@ -21,7 +28,7 @@ export default {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-color: #ccc;
+  background-color: #8f8fbd ;
 }
 .img {
 position: absolute;

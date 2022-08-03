@@ -7,7 +7,7 @@
           name="cross"
           size="18"
           color="#fff"
-          @click="$emit('input', false)"
+          @click="closeedit"
         />
       </template>
     </van-nav-bar>
@@ -25,7 +25,7 @@
           <van-row type="flex" justify="left">
             <van-col span="5" class="col" v-for="c,index in channels" :key="c.id" @click="changechannel(c,index,1)"
               >{{ c.name }}
-              <van-icon name="cross" class="crossicon" color="#111" size="3" v-show="showx&& c.name!=='推荐'"/>
+              <van-icon name="cross" class="crossicon" color="#111" size="15" v-show="showx&& c.name!=='推荐'"/>
             </van-col>
           </van-row>
         </div>
@@ -86,6 +86,10 @@ export default {
         this.$emit('changec', index)
         this.$emit('input', false)
       }
+    },
+    closeedit () {
+      this.$emit('input', false)
+      this.showx = false
     }
   },
   computed: {

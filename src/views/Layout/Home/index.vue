@@ -6,7 +6,7 @@
         <img src="@/assets/1.png" class="logo" />
       </template>
       <template #right>
-        <van-icon name="search" size="18" color="#fff" @click="$router.push('/search')"/>
+        <van-icon name="search" size="0.8rem" color="#fff" @click="$router.push('/search')"/>
       </template>
     </van-nav-bar>
     <!-- 滚动栏 -->
@@ -17,7 +17,7 @@
           <ArticleList :active="active"/>
         </van-tab>
       </van-tabs>
-      <div class="right"><van-icon name="plus" @click="plusclick"/></div>
+      <div ><van-icon name="plus" class="right" size="0.5rem" @click="plusclick" color="#FF7F00"/></div>
     </div>
     <!-- 添加频道 -->
       <van-popup v-model="show" get-container="body" class="pop">
@@ -120,9 +120,10 @@ export default {
 <style lang="less" scoped>
 .logo {
   position: relative;
-  left: -12px;
-  width: 71px;
-  height: 49px;
+  left: -2px;
+  top: 15px;
+  width: 70px;
+  height: 60px;
 }
 /deep/.van-tab__pane {
   padding: 0 16px;
@@ -145,6 +146,7 @@ export default {
   text-align: center;
   line-height: 44px;
   z-index: 1000;
+
 }
 /deep/.van-tabs__wrap {
   padding-right: 44px;

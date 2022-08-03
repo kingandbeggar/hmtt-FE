@@ -3,7 +3,7 @@ import {
   NavBar, Cell, CellGroup, Form, Field, Button, CountDown, Tabbar, TabbarItem,
   Icon, Tab, Tabs, Image as VanImage, List, PullRefresh, ActionSheet, Popup,
   Col, Row, Search, Divider, Loading, Lazyload, Badge, Tag, Uploader, Dialog,
-  DatetimePicker
+  DatetimePicker, NoticeBar, Swipe, SwipeItem
 } from 'vant'
 Vue.use(NavBar)
 Vue.use(Cell)
@@ -35,3 +35,6 @@ Vue.use(Tag)
 Vue.use(Uploader)
 Vue.use(Dialog)
 Vue.use(DatetimePicker)
+Vue.use(NoticeBar)
+Vue.use(Swipe)
+Vue.use(SwipeItem)

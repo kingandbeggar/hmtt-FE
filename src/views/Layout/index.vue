@@ -3,7 +3,7 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <van-tabbar v-model="active">
+    <van-tabbar v-model="active" :safe-area-inset-bottom="true">
       <van-tabbar-item to="/layout/home" icon="wap-home-o"
         >首页</van-tabbar-item
       >
@@ -25,6 +25,11 @@ export default {
     return {
       active: 0
     }
+  },
+  activated () {
+    console.log('我被激活了')
+    // 处理退出登录后tabbar图标active错误的问题
+    this.active = 0
   }
 }
 </script>

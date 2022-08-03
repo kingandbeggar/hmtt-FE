@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-    <van-field v-model="sms" center clearable placeholder="请输入" class="send">
+    <van-field v-model="sms" center clearable placeholder="请输入" class="send" :autofocus="true">
       <template #button>
         <van-button size="small" type="primary" @click="sendmsg" :disabled="sms.trim().length ===0">发送</van-button>
       </template>
@@ -177,7 +177,7 @@ export default {
     }
   }
   .right {
-    justify-content: right;
+    justify-content: flex-end;
     text-align: left;
   }
 }
